@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Table for CVS data</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/app.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="container text-center">
+				<h3>Persons</h3>
+				<button type="button" class="btn btn-primary text-center">Load data</button>
+				<button type="button" class="btn btn-primary text-center">Save data</button>
+			</div>
+			
+		</div>
+	</div>
+	<div id="main-content" class="container">
+		<table id="personsTable" class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Surname</th>
+					<th scope="col">Zip code</th>
+					<th scope="col">City</th>
+					<th scope="col">Contact</th>
+					<td style="display:none;">
+					
+				</tr>
+			</thead>
+			<tbody>
+				 <tr th:each="person : ${persons}">
+                    <td th:text="${person.name}"></td>
+                    <td th:text="${person.surname}"></td>
+                    <td th:text="${person.zipCode}"></td>
+                    <td th:text="${person.city}"></td>
+                    <td th:text="${person.contactNumber}"></td>
+                    <td style="display:none;" class="errorCell" th:text="${person.error}"></td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- Footer -->
+	<footer class="fixed-bottom page-footer font-small blue">
+
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">
+			© 2019 Copyright: <a
+				href="https://www.linkedin.com/in/tomislav-dorić-28a8bb108?originalSubdomain=hr">
+				Tomislav Dorić</a>
+		</div>
+		<!-- Copyright -->
+
+	</footer>
+	<!-- Footer -->
+</body>
+</html>
