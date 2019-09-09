@@ -1,4 +1,4 @@
-package task.service.impl;
+package task.service;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import task.dao.PersonDao;
 import task.model.Person;
-import task.service.PersonService;
 
 @Component
 public class PersonServiceImpl implements PersonService {

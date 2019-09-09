@@ -1,11 +1,9 @@
-package task.dao.impl;
+package task.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import task.dao.PersonDao;
-import task.dao.Statements;
 import task.model.Person;
 
 @Repository

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import task.config.AppProperties;
 import task.service.CSVUtils;
 import task.service.PersonService;
 
@@ -15,6 +16,8 @@ public class PersonController {
 	CSVUtils csvUtils;
 	@Autowired
 	PersonService personService;
+	@Autowired
+	private AppProperties appProperties;
 	
 	@GetMapping("/persons")
 	public String setLocations(Model model) {
@@ -23,7 +26,7 @@ public class PersonController {
 	
 	@GetMapping("/getPersons")
 	public String getPersons(Model model) {
-		model.addAttribute("persons", csvUtils.getPersonsFromCSV("D:/Workspaces/task/src/main/resources/convertcsv.csv"));
+		model.addAttribute("persons", csvUtils.getPersonsFromCSV(appProperties.getPathFile()));
 		return "index";
 	}	
 	
