@@ -7,4 +7,20 @@ $( document ).ready(function() {
         }
         console.log(errorCell);
      });
+    
+    $( "#saveData" ).click(function() { start(); });
+    
+  
 });
+
+function start() {
+ 	 $.ajax({
+ 		   type:'POST',
+ 		   url :"savePersons",
+ 		   success: function() {
+ 		        console.log('success');
+ 		       alert('Data successfully saved');
+ 		   },
+ 		   error:function(exception){alert('Exeption:'+exception);}
+ 		}); 
+ }

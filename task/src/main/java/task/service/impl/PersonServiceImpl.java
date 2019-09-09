@@ -15,23 +15,28 @@ import task.service.PersonService;
 
 @Component
 public class PersonServiceImpl implements PersonService {
-	
+
 	@Autowired
 	PersonDao personDao;
 	private static Logger logger = LoggerFactory.getLogger(PersonServiceImpl.class);
-	
+
 	@Override
 	public void insertInDatabase(List<Person> persons) {
-		try {
-			for (Iterator<Person> iterator = persons.iterator(); iterator.hasNext();) {
-				Person person = (Person) iterator.next();
-				personDao.insertPerson(person);
+		for (Iterator<Person> iterator = persons.iterator(); iterator.hasNext();) {
+			Person person = (Person) iterator.next();
+			try {
+				if(!person.getError()) {
+					personDao.insertPerson(person);
+				}
 				
+
+			} catch (DataIntegrityViolationException e) {
+				logger.info("Duplicates not allowed in database \n Name:{};Surname:{},ZipCode:{};City:{};Contact:{}; exist in database",
+						person.getName(),person.getSurname(),person.getZipCode(),person.getCity(),person.getContactNumber());
 			}
-		} catch (DataIntegrityViolationException  e) {
-			logger.info("Duplicates not allowed in database");
+
 		}
-		
+
 	}
 
 }
